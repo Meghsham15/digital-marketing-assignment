@@ -1,66 +1,56 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const contactButton = document.getElementById('contactButton');
-    const popupForm = document.getElementById('popupForm');
-    const closeBtn = document.getElementById('closeBtn');
-    const inputEle = document.querySelectorAll(".input-group div");
-    contactButton.addEventListener('click', (e) => {
+$(document).ready(() => {
+    const $contactButton = $('#contactButton');
+    const $popupForm = $('#popupForm');
+    const $closeBtn = $('#closeBtn');
+    const $inputGroups = $(".input-group div");
+
+    $contactButton.on('click', (e) => {
         e.preventDefault();
-        popupForm.style.display = 'flex';
+        $popupForm.css('display', 'flex');
     });
 
-    closeBtn.addEventListener('click', () => {
-        popupForm.style.display = 'none';
+    $closeBtn.on('click', () => {
+        $popupForm.css('display', 'none');
     });
 
-    inputEle.forEach((element)=>{
-        element.addEventListener('click',(ele)=>{
-            let inTag = element.getElementsByTagName("input");
-            // console.log(inTag);
-            inTag[0].style.height = "25px";
-        });
-    })
-
-
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    const slides = document.querySelectorAll('.static-slide');
-    const dots = document.querySelectorAll('.dot');
-    const innerCircle = document.querySelectorAll('.circle');
-
-    slides.forEach((slide, index) => {
-        slide.addEventListener('mouseover', () => {
-            dots.forEach(dot => dot.classList.remove('active'));
-            dots[index].classList.add('active');
-            innerCircle.forEach(ele => ele.classList.remove('circle-active'));
-            innerCircle[index].classList.add('circle-active');
-            slide.classList.remove('decreseWidth');
-            slide.classList.add('increaseWidth');
-        });
-
-        slide.addEventListener('mouseout', () => {
-            innerCircle[index].classList.remove('circle-active');
-            dots[index].classList.remove('active');
-            slide.classList.remove('increaseWidth');
-            slide.classList.add('decreseWidth');
+    $inputGroups.each(function() {
+        $(this).on('click', function() {
+            const $input = $(this).find("input");
+            $input.css('height', '25px');
         });
     });
 });
 
+$(document).ready(() => {
+    const $slides = $('.static-slide');
+    const $dots = $('.dot');
+    const $innerCircle = $('.circle');
 
-document.addEventListener('DOMContentLoaded', function() {
-    const projectItems = document.querySelectorAll('.project-item');
-    const projectImage = document.getElementById('project-image');
-
-    projectItems.forEach(item => {
-        item.addEventListener('click', function() {
-            // Remove active class from all items
-            projectItems.forEach(i => i.classList.remove('active'));
-            // Add active class to the clicked item
-            item.classList.add('active');
-            // Change the image
-            const newImage = item.getAttribute('data-image');
-            projectImage.setAttribute('src', newImage);
+    $slides.each(function(index) {
+        $(this).on('mouseover', function() {
+            $dots.removeClass('active');
+            $dots.eq(index).addClass('active');
+            $innerCircle.removeClass('circle-active');
+            $innerCircle.eq(index).addClass('circle-active');
+            $(this).removeClass('decreseWidth').addClass('increaseWidth');
         });
+
+        $(this).on('mouseout', function() {
+            $innerCircle.eq(index).removeClass('circle-active');
+            $dots.eq(index).removeClass('active');
+            $(this).removeClass('increaseWidth').addClass('decreseWidth');
+        });
+    });
+});
+
+$(document).ready(() => {
+    const $projectItems = $('.project-item');
+    const $projectImage = $('#project-image');
+
+    $projectItems.on('click', function() {
+        $projectItems.removeClass('active');
+        $(this).addClass('active');
+        const newImage = $(this).attr('data-image');
+        $projectImage.attr('src', newImage);
     });
 });

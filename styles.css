@@ -6,6 +6,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: end;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 
 .container {
@@ -618,7 +620,7 @@ input[type="checkbox"]:not(:checked)::before {
     margin: 0 auto;
     padding: 0 20px;
     width: 70%;
-    width: 1300px;
+    width: 1260px;
 }
 
 footer {
@@ -658,7 +660,7 @@ footer img{
     flex: 1 1 200px;
     text-align: center;
     transition: transform 0.3s ease;
-    max-width: 250px;
+    max-width: 230px;
 }
 
 .company-growth__stat:hover {
